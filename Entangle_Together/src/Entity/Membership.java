@@ -146,4 +146,8 @@ public class Membership {
 				+ ", fiveStartsRank=" + fiveStartsRank + ", nickname=" + nickname + ", CreatedDate=" + CreatedDate
 				+ ", UpdateDate=" + UpdateDate + "]";
 	}
+
+
+
+	
 }

@@ -78,12 +78,12 @@ public class MembershipDAO implements IMembershipDAO {
 	}
 
 	@Override
-	public Membership selectOneMember(String id) {
+	public List<Membership> selectOneMember(String id) {
 
 		Membership membership = null;
 		JNDI jndi = new JNDI();
 		Connection conn = null;
-
+		List<Membership> oneMember = new ArrayList<>();
 		
 		try {
 			conn = jndi.init();
@@ -91,6 +91,7 @@ public class MembershipDAO implements IMembershipDAO {
 			ResultSet rs = stmt.executeQuery(select_One_Member+id);
 			while (rs.next()) {
 				membership = new Membership();
+				
 				membership.setId(rs.getInt(1));
 				membership.setAccount(rs.getString(2));
 				membership.setPassword(rs.getString(3));
@@ -106,6 +107,8 @@ public class MembershipDAO implements IMembershipDAO {
 				membership.setNickname(rs.getString(13));
 				membership.setCreatedDate(rs.getDate(14));
 				membership.setUpdateDate(rs.getDate(15));
+				
+				oneMember.add(membership);
 								
 			}
 			System.out.println(rs.next());
@@ -117,7 +120,7 @@ public class MembershipDAO implements IMembershipDAO {
 		}finally {
 			jndi.close(conn);
 		}
-		return membership;
+		return oneMember;
 	}
 
 	@Override

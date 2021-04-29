@@ -87,8 +87,15 @@ public class Administrator extends HttpServlet {
 			
 			System.out.println("id是："+id);
 			MembershipDAO mem = new MembershipDAO();
-			Membership list = mem.selectOneMember(id);
-			System.out.println("這是查詢單一會員的list =" + list);
+			List<Membership> oneMember = mem.selectOneMember(id);
+			System.out.println("這是查詢單一會員的Membership =" + oneMember);
+			
+			req.setAttribute("mem", oneMember); 
+	        
+			String url = "/oneMember.jsp";
+			RequestDispatcher rd = req.getRequestDispatcher(url);
+			rd.forward(req, res);
+			
 		}
 
 
