@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=BIG5"
 	pageEncoding="BIG5"%>
 <%@ page import="java.util.* ,Entity.Membership"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>

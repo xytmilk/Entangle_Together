@@ -78,6 +78,7 @@ public class Administrator extends HttpServlet {
 			List<Membership> list = new ArrayList();
 			Membership member = new Membership();
 			member.setAccount("有出現");
+			list.add(member);
 			req.setAttribute("list", list);
 			System.out.println("我是select_all的jsp");
 			out.print("這個是controller跳出來的list" + list);
