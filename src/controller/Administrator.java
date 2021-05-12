@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -72,9 +73,14 @@ public class Administrator extends HttpServlet {
 		//這個是管理員的功能之一：查詢全部會員
 		if(action.equals("select_all")) {
 			MembershipDAO mem = new MembershipDAO();
-			List<Membership> list = mem.selectAll();
+//			List<Membership> list = mem.selectAll();
+			
+			List<Membership> list = new ArrayList();
+			Membership member = new Membership();
+			member.setAccount("有出現");
 			req.setAttribute("list", list);
 			System.out.println("我是select_all的jsp");
+			out.print("這個是controller跳出來的list" + list);
 			String url = "/administer_function.jsp";
 			RequestDispatcher rd = req.getRequestDispatcher(url);
 			rd.forward(req, res);

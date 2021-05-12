@@ -26,8 +26,8 @@
 
 
 <% List<Membership> list = (List<Membership>) request.getAttribute("list"); %>
-<% System.out.println(list); %>
-
+<% System.out.println("應該要有memberShip的DATA :" + list); %>
+<%-- --%>
 
 <% for (int i = 0; i < list.size(); i++) {
  			Membership mem = list.get(i); 
@@ -37,7 +37,7 @@
   			String status = mem.getStatusDescription();
   			int rank = mem.getFiveStartsRank();
   			int id = mem.getId();
- %> 
+ %>  
   <tr>  
 		<td width="200"><div align="center"><b><%=account%></b></div></td>
 		<td width="100"><div align="center"><b><%=nickname%></b></div></td>
@@ -62,6 +62,8 @@
 <% 
  }
 %>
+
+
 
 </table>
 

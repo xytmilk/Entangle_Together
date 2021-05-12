@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=BIG5"
 	pageEncoding="BIG5"%>
 <%@ page import="java.util.* ,Entity.Membership"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,17 +39,27 @@
 		3.最後c:if 要用的時候，從你放進去的scope【requestScope】中取出來用【test="${requestScope.list != null}"】
 	 -->
 
+
+<%-- --%>
+	
+	<c:if test="${sessionScope.name != 'administer'}">
+		<% out.println("我是user：" + user); %>
+	</c:if>
+ 
+	
+
+
 	<%
 		List<Membership> list = (List<Membership>) request.getAttribute("list");
 		request.setAttribute("list", list);
-		System.out.println(list);
+		System.out.println("應該要有：" + list);
 	%>
 	
-
+ 
 	<c:if test="${requestScope.list != null}">
 		<jsp:include page="/membershipData.jsp" flush="true" />
 	</c:if>
-
+ 
 
 </body>
 </html>
