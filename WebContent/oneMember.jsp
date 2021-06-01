@@ -6,23 +6,25 @@
 <html>
 <head>
 <meta charset="BIG5">
-<title>welcome your account</title>
+<title>account detail</title>
 </head>
 <body>
 
 <% List<Membership> list = (List<Membership>)request.getAttribute("mem"); %>
+<% System.out.println("我是oneMember.jsp"); %>
 <% System.out.println(list); %>
 
 
 <% for (int i = 0; i < list.size(); i++) {
  			Membership mem = list.get(i); 
   			
+ 			
  			int id = mem.getId();
  			String account = mem.getAccount();
  			String password = mem.getPassword();
  			String realName = mem.getRealName();
  			String IdNumber = mem.getIdNumber();
- 			byte photo = mem.getPhoto();
+ 			byte[] photo = mem.getPhoto();
   			String email = mem.getEmail();
   			String authority = mem.getAuthority();
   			String statusDescription = mem.getStatusDescription();
@@ -36,7 +38,7 @@
  %> 
 
 <% System.out.println("我是Onemember.jsp，資料有近來喔"); %>
-<div align="center"><font size="+2">Welcome <%=account %> </font></div>
+<div align="center"><font size="+2">Welcome <%=(String)session.getAttribute("name") %> </font></div>
 <hr><p>
 
 <div align="center"><b>Account: <%=account%></b></div>
@@ -57,7 +59,6 @@
 
 
 <%} %>
-
 
 
 

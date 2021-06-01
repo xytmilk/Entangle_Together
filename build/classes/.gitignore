@@ -1,5 +1,4 @@
-/controller/
 /DAO/
-/Entity/
+/controller/
 /Service/
-/Util/
+/Entity/

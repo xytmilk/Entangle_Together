@@ -12,12 +12,23 @@
 		<form name="logIn" method="POST"
 			action="<%=request.getContextPath()%>/administer_logIn">
 			<p>
-				Administrator's Name: <input type="text" name="name"><br />
+				Account: <input type="text" name="name"><br />
 			<p>
-				Adiministrator's Password: <input type="text" name="Password"><br />
-				<input name="button" type="submit" value="submit" > <input
-					type="hidden" name="action" value="log_in" >
+				Password: <input type="text" name="Password"><br />
+			<br><br/>
+				<input name="button" type="submit" value="Log in" > 
+				<input type="hidden" name="action" value="log_in" >
+				
 		</form>
+		
+		<form name="Sing_in" method="POST"
+			action="<%=request.getContextPath()%>/administer_logIn">
+				<input name="button" type="submit" value="Sign in" > 
+				<input type="hidden" name="action" value="Sign_in" >
+		</form>
+		
+		
+		
 		<a>forgetting password</a>
 	</div>
 </body>

@@ -1,14 +1,17 @@
 package Entity;
 
+import java.io.InputStream;
+import javax.servlet.http.Part;
+
 public class Membership {
 
 	private int Id;// 1
 	private String account;// 2
-	private String Password;// 3
+	private String password;// 3
 	private String realName;// 4
-	private String IdNumber;// 5
-	private byte photo;// 6
-	private String Email;// 7
+	private String idNumber;// 5
+	private byte[] photo;// 6
+	private String email;// 7
 	private String authority;// 8
 	private String statusDescription;// 9
 	private int points;// 10
@@ -35,11 +38,11 @@ public class Membership {
 	}
 
 	public String getPassword() {
-		return Password;
+		return password;
 	}
 
 	public void setPassword(String password) {
-		Password = password;
+		this.password = password;
 	}
 
 	public String getRealName() {
@@ -51,27 +54,27 @@ public class Membership {
 	}
 
 	public String getIdNumber() {
-		return IdNumber;
+		return idNumber;
 	}
 
 	public void setIdNumber(String idNumber) {
-		IdNumber = idNumber;
+		this.idNumber = idNumber;
 	}
 
-	public byte getPhoto() {
+	public byte[] getPhoto() {
 		return photo;
 	}
 
-	public void setPhoto(byte photo) {
+	public void setPhoto(byte[] photo) {
 		this.photo = photo;
 	}
 
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
 
 	public String getAuthority() {
@@ -140,8 +143,8 @@ public class Membership {
 
 	@Override
 	public String toString() {
-		return "Membership [Id=" + Id + ", account=" + account + ", Password=" + Password + ", realName=" + realName
-				+ ", IdNumber=" + IdNumber + ", photo=" + photo + ", Email=" + Email + ", authority=" + authority
+		return "Membership [Id=" + Id + ", account=" + account + ", Password=" + password + ", realName=" + realName
+				+ ", IdNumber=" + idNumber + ", photo=" + photo + ", Email=" + email + ", authority=" + authority
 				+ ", statusDescription=" + statusDescription + ", points=" + points + ", bankAccount=" + bankAccount
 				+ ", fiveStartsRank=" + fiveStartsRank + ", nickname=" + nickname + ", CreatedDate=" + CreatedDate
 				+ ", UpdateDate=" + UpdateDate + "]";
