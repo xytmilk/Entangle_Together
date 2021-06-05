@@ -73,10 +73,10 @@ public class Administrator extends HttpServlet {
 			if(name != "administrator" || password != "administrator") {
 				
 				MembershipDAO memDAO = new MembershipDAO();
-				List<Membership> list = memDAO.logInFromAccount(name);
+				Membership list = memDAO.logInFromAccount(name);
 				System.out.println(list);
-				String memAccount = list.get(0).getAccount();
-				String memPassword = list.get(0).getPassword();
+				String memAccount = list.getAccount();
+				String memPassword = list.getPassword();
 				System.out.println("輸入的account是：" + name + "密碼是：" + password);	
 				System.out.println("這是用account登入 ，我抓到的account是：" + memAccount + "密碼是：" + memPassword);
 				
@@ -122,7 +122,7 @@ public class Administrator extends HttpServlet {
 			
 			System.out.println("id是："+id);
 			MembershipDAO mem = new MembershipDAO();
-			List<Membership> oneMember = mem.selectOneMember(id);
+			Membership oneMember = mem.selectOneMember(id);
 			System.out.println("這是查詢單一會員的Membership =" + oneMember);
 			
 			req.setAttribute("mem", oneMember); 

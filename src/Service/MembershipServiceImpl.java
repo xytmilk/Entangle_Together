@@ -30,5 +30,9 @@ public class MembershipServiceImpl implements IMembershipService {
 		
 		return membership;
 	}
+	
+	public Membership selectOne(String id) {
+		return memDAO.selectOneMember(id);
+	}
 
 }

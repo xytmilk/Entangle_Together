@@ -19,6 +19,17 @@
 		<url-pattern>/administer_logIn</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>GifReader</servlet-name>
+		<servlet-class>blob.reader.GifReader</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GifReader</servlet-name>
+		<url-pattern>/GifReader</url-pattern>
+	</servlet-mapping>
+	
+	
+	
 	<resource-ref>
 		<description>DB Connection</description>
 		<res-ref-name>jdbc/TestDB</res-ref-name>

@@ -10,14 +10,12 @@
 </head>
 <body>
 
-<% List<Membership> list = (List<Membership>)request.getAttribute("mem"); %>
+<% Membership mem = (Membership)request.getAttribute("mem"); %>
 <% System.out.println("§Ú¬OoneMember.jsp"); %>
-<% System.out.println(list); %>
+<% System.out.println(mem); %>
 
 
-<% for (int i = 0; i < list.size(); i++) {
- 			Membership mem = list.get(i); 
-  			
+<% 		
  			
  			int id = mem.getId();
  			String account = mem.getAccount();
@@ -45,7 +43,8 @@
 <div align="center"><b>Password:<%=password%></b></div>
 <div align="center"><b>Real Name:<%=realName%></b></div>
 <div align="center"><b>Id Number:<%=IdNumber%></b></div>
-<div align="center"><b>photo:<%=photo%></b></div>
+<div align="center"><b>photo:
+<img src="<%=request.getContextPath()%>/GifReader?id=<%=mem.getId()%>"></b></div>
 <div align="center"><b>Email:<%=email%></b></div>
 <div align="center"><b>Authority:<%=authority%></b></div>
 <div align="center"><b>Status Description:<%=statusDescription%></b></div>
@@ -58,7 +57,7 @@
 
 
 
-<%} %>
+
 
 
 
