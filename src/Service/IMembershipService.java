@@ -10,8 +10,8 @@ public interface IMembershipService {
 	public Membership addData(String account, String password, String realName, String IdNumber, byte[] photo, String Email,
 			String statusDescription, int bankAccount, String nickname);
 	
-	public Membership selectOne(String id);
-	
+	//用ID選一個人的資料
+	public Membership selectOne(String account);
 	
 	
 }

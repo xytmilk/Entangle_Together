@@ -20,6 +20,15 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>membership_logIn</servlet-name>
+		<servlet-class>controller.MemberShip</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>membership_logIn</servlet-name>
+		<url-pattern>/membership_logIn</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>GifReader</servlet-name>
 		<servlet-class>blob.reader.GifReader</servlet-class>
 	</servlet>

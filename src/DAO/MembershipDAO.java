@@ -15,10 +15,9 @@ public class MembershipDAO implements IMembershipDAO {
 
 	//SQL命令
 	private final String select_All = "select * from MEMBERSHIP";
-	private final String select_One_Member="SELECT Id, account, password, realName, IdNumber, photo, email, authority, statusDescription, points, bankAccount, fiveStartsRank, nickname, to_char(CreatedDate,'yyyy-mm-dd') CreatedDate, to_char(UpdateDate,'yyyy-mm-dd') UpdateDate From MEMBERSHIP where id=?";
+	private final String select_One_Member="SELECT Id, account, password, realName, IdNumber, photo, email, authority, statusDescription, points, bankAccount, fiveStartsRank, nickname, to_char(CreatedDate,'yyyy-mm-dd') CreatedDate, to_char(UpdateDate,'yyyy-mm-dd') UpdateDate From MEMBERSHIP where account='GodMao1'";
 	private final String log_in_from_account="SELECT Id, account, password, realName, IdNumber, photo, email, authority, statusDescription, points, bankAccount, fiveStartsRank, nickname, to_char(CreatedDate,'yyyy-mm-dd') CreatedDate, to_char(UpdateDate,'yyyy-mm-dd') UpdateDate From MEMBERSHIP where account=?";
 	private final String insert_in_to="insert into MEMBERSHIP(Id, account, password, realName, idNumber, photo, email, statusDescription, bankAccount, nickname, CreatedDate, UpdateDate) values (dis_id_seq.nextval,?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate, sysdate)";
-		
 			
 	@Override
 	public List<Membership> selectAll() {
@@ -28,6 +27,7 @@ public class MembershipDAO implements IMembershipDAO {
 		ResultSet rs = null;
 		
 		List<Membership> membership = new ArrayList<>();
+		
 		try {
 			conn = jndi.init();
 			pstmt = conn.prepareStatement(select_All);
@@ -90,44 +90,50 @@ public class MembershipDAO implements IMembershipDAO {
 	}
 
 	@Override
-	public Membership selectOneMember(String id) {
+	public Membership selectOneMember(String account) {
 
 		JNDI jndi = new JNDI();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		Membership oneMember = null;
+		//String accountSQL = "'" + account +"'";
 		
 		try {
 			conn = jndi.init();
 			pstmt = conn.prepareStatement(select_One_Member);
 			
-			pstmt.setString(1, id);
+			//pstmt.setString(1, accountSQL);
 			rs = pstmt.executeQuery();
 			
+			System.out.println(rs.next());
+			
 			while (rs.next()) {
+				System.out.println("a");
 				oneMember = new Membership();
 				
-				oneMember.setId(rs.getInt(1));
-				oneMember.setAccount(rs.getString(2));
-				oneMember.setPassword(rs.getString(3));
-				oneMember.setRealName(rs.getString(4));
-				oneMember.setIdNumber(rs.getString(5));
-				oneMember.setPhoto(rs.getBytes(6));
-				oneMember.setEmail(rs.getString(7));
-				oneMember.setAuthority(rs.getString(8));
-				oneMember.setStatusDescription(rs.getString(9));
-				oneMember.setPoints(rs.getInt(10));
-				oneMember.setBankAccount(rs.getInt(11));
-				oneMember.setFiveStartsRank(rs.getInt(12));
-				oneMember.setNickname(rs.getString(13));
-				oneMember.setCreatedDate(rs.getDate(14));
-				oneMember.setUpdateDate(rs.getDate(15));
+				oneMember.setId(rs.getInt("Id"));
+				oneMember.setAccount(rs.getString("account"));
+				oneMember.setPassword(rs.getString("password"));
+				oneMember.setRealName(rs.getString("realName"));
+				oneMember.setIdNumber(rs.getString("IdNumber"));
+				oneMember.setPhoto(rs.getBytes("photo"));
+				oneMember.setEmail(rs.getString("email"));
+				oneMember.setAuthority(rs.getString("authority"));
+				oneMember.setStatusDescription(rs.getString("statusDescription"));
+				oneMember.setPoints(rs.getInt("points"));
+				oneMember.setBankAccount(rs.getInt("bankAccount"));
+				oneMember.setFiveStartsRank(rs.getInt("fiveStartsRank"));
+				oneMember.setNickname(rs.getString("nickname"));
+				oneMember.setCreatedDate(rs.getDate("CreatedDate"));
+				oneMember.setUpdateDate(rs.getDate("UpdateDate"));
+				
+				System.out.println("oneMember1 = " + oneMember);
 				
 								
 			}
-			System.out.println(rs.next());
 			System.out.println("我是select_one_member的DAO，我有執行到");
+			System.out.println("oneMember2 = " + oneMember);
 			
 			
 		} catch (SQLException e) {
@@ -180,7 +186,7 @@ public class MembershipDAO implements IMembershipDAO {
 			
 			while (rs.next()) {
 				membership = new Membership();
-				
+	//			
 				membership.setId(rs.getInt(1));
 				membership.setAccount(rs.getString(2));
 				membership.setPassword(rs.getString(3));
@@ -246,7 +252,7 @@ public class MembershipDAO implements IMembershipDAO {
 		
 	}
 	
-	
+
 	
 	
 }

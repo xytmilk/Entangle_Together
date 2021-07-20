@@ -12,5 +12,4 @@ public interface IMembershipDAO {
 	public void updateDate();
 	public Membership logInFromAccount(String account);
 	public void insert(Membership membership);
-	
 }

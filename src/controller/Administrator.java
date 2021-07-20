@@ -41,11 +41,12 @@ public class Administrator extends HttpServlet {
 		if(action.equals("log_in")) {
 			
 			String name = req.getParameter("name");
+			System.out.println("是空字串嗎?" + name); //是空字串喔!!!
 			String password = req.getParameter("Password");
 
 			//帳號密碼驗證：過濾無輸入
-			if(name == null || password == null) {
-				out.println("請輸入帳密喔!");
+			if(name == null || password == null) {//不會有null
+				out.println("請輸入帳密111喔!");
 			} 
 			
 			//帳號密碼驗證：過濾輸入空格
@@ -54,13 +55,13 @@ public class Administrator extends HttpServlet {
 			} 
 			
 			//帳號密碼驗證：驗證為administrator，帳密正確進入，轉跳administer_function.jsp
-			if (name.equals("administrator") && password.equals("administrator")) {
+			if (name.equals("administrator") && password.equals("administrator")) { // todo
 				System.out.println("帳密正確，進入");
 				
 				HttpSession session = req.getSession();
 		        session.setAttribute("name", name); 
 				
-		        String user = (String)session.getAttribute("name");
+		        String user = (String)session.getAttribute("name");// todo
 		        System.out.println("我是session：" + user);
 				
 				String url = "/administer_function.jsp";
@@ -70,10 +71,10 @@ public class Administrator extends HttpServlet {
 			}
 			
 			//如果帳號，密碼不等於"administrator"，就是一般使用戶的登入
-			if(name != "administrator" || password != "administrator") {
+			if(name != "administrator" || password != "administrator") { // todo
 				
 				MembershipDAO memDAO = new MembershipDAO();
-				Membership list = memDAO.logInFromAccount(name);
+				Membership list = memDAO.logInFromAccount(name); // todo
 				System.out.println(list);
 				String memAccount = list.getAccount();
 				String memPassword = list.getPassword();
@@ -86,7 +87,7 @@ public class Administrator extends HttpServlet {
 					HttpSession session = req.getSession();
 			        session.setAttribute("name", memAccount); 
 					
-			        String user = (String)session.getAttribute("name");
+			        String user = (String)session.getAttribute("name");// todo
 			        System.out.println("我是session：" + user);
 			        
 			        req.setAttribute("mem", list); 
@@ -97,13 +98,14 @@ public class Administrator extends HttpServlet {
 				}
 				
 			}else {
-				out.println("帳號或密碼不對喔!");
+				out.println("帳號或密碼不對喔!"); // todo
 			}							
 		}
 		
 		
 		//這個是管理員的功能之一：查詢全部會員
 		if(action.equals("select_all")) {
+			// todo
 			MembershipDAO mem = new MembershipDAO();
 			List<Membership> list = mem.selectAll();
 			
@@ -145,7 +147,7 @@ public class Administrator extends HttpServlet {
 		if(action.equals("insert")) {
 			
 			//建立錯誤訊息顯示的List
-			List<String> errorMsgs = new LinkedList<String>();
+			List<String> errorMsgs = new LinkedList<String>(); // todo
 			req.setAttribute("errorMsgs", errorMsgs);
 			
 			//接受參數
@@ -153,7 +155,7 @@ public class Administrator extends HttpServlet {
 				
 				String account = (String)req.getParameter("account");
 				System.out.println(account);
-				String enameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
+				String enameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$"; // todo
 				if (account == null || account.trim().length() == 0) {
 					errorMsgs.add("account: 請勿空白");
 				} else if(!account.trim().matches(enameReg)) { 
@@ -208,6 +210,7 @@ public class Administrator extends HttpServlet {
 				
 				int bankAccount = 0;
 				try {
+//					Integer.parseInt(req.getParameter("bankAccount").trim());
 					bankAccount = new Integer(req.getParameter("bankAccount").trim());
 					System.out.println(bankAccount);
 				}catch (NumberFormatException e) {
@@ -228,7 +231,7 @@ public class Administrator extends HttpServlet {
 				membership.setBankAccount(bankAccount);
 				System.out.println(membership);
 				
-				if (!errorMsgs.isEmpty()) {
+				if (!errorMsgs.isEmpty()) { // todo
 					System.out.println("errorMsgs" + errorMsgs);
 					req.setAttribute("membership", membership); // 含有輸入格式錯誤的empVO物件,也存入req
 					RequestDispatcher failureView = req.getRequestDispatcher("/addMemberShip.jsp");
@@ -241,7 +244,7 @@ public class Administrator extends HttpServlet {
 				
 				System.out.println("我要進去了");
 				IMembershipService memService = new MembershipServiceImpl();
-				memService.addData(account, password, realName, idNumber, photo, email, statusDescription, bankAccount, nickname);
+				memService.addData(account, password, realName, idNumber, photo, email, statusDescription, bankAccount, nickname); // todo
 				
 				//寫進去之後，轉交給成功頁面//oneMember要用list讀(未解決)
 				
@@ -257,7 +260,7 @@ public class Administrator extends HttpServlet {
 				successView.forward(req, res);	
 				
 			}catch(Exception e) {
-				e.printStackTrace(System.err);
+				e.printStackTrace(System.err); // todo
 			}
 			
 		}

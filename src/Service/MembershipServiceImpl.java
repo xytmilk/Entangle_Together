@@ -7,6 +7,7 @@ import Entity.Membership;
 public class MembershipServiceImpl implements IMembershipService {
 
 	private IMembershipDAO memDAO = new MembershipDAO();
+
 	@Override
 	public void getData() {	}
 
@@ -31,8 +32,12 @@ public class MembershipServiceImpl implements IMembershipService {
 		return membership;
 	}
 	
-	public Membership selectOne(String id) {
-		return memDAO.selectOneMember(id);
+	@Override
+	public Membership selectOne(String account) {
+		return memDAO.selectOneMember(account);
 	}
+
+	
+	
 
 }
